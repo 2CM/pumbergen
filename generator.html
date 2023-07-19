@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pumber Sign Generator :3</title>
+    <link rel="shortcut icon" href="assets/icon.png" type="image/x-icon">
+</head>
+<body style="margin: 0; padding: 0; overflow-x: hidden; align-items: center; justify-content: center; color: white; height: max-content; image-rendering: pixelated; background-image: url('assets/Board.png'); background-size: 100%; font-family: sans-serif;">
+    
+    <!-- <div style="background-image: url('assets/Board.png'); background-size: 100%; image-rendering: pixelated; height: 1776px; width: 100%; position: absolute; top: 0; left: 0;"></div> -->
+
+    <div style="position: absolute; top: 0; left: 0; width: 100vw; height: inherit; background-image: url('assets/bg.png'); background-size: 100%;">
+        <img src="assets/bg.png" alt="" width="100%" style="image-rendering: pixelated; visibility: hidden;">
+    </div>
+
+    <div style="position: absolute; top: 0; left: 0; width: 100vw; height: inherit; background-image: url('assets/fg.png'); background-size: 100%;">
+        <img src="assets/fg.png" alt="" width="100%" style="image-rendering: pixelated; visibility: hidden;">
+    </div>
+
+
+    <!-- <div style="background-image: url('assets/fg.png'); width: 100%; height: 100%;"></div> -->
+
+    <!-- <div style="position: relative; height: max-content;"> -->
+        <!-- <img src="assets/bro.png" alt="" width="100%" style="image-rendering: pixelated; position: absolute; background: red; -webkit-mask-image: url('assets/fg.png'); -webkit-mask-size: 100%;"> -->
+        <!-- <div style="background: red;"></div> -->
+        <!-- <div style="position: absolute; width: 100%; mix-blend-mode: multiply; position: relative; background: linear-gradient(-45deg, #FF5CF0,#82FFFF,#FF4A4A,#FF5CF0,#82FFFF,#FF4A4A,#FF5CF0); background-size: 100px 100px; animation: 5s linear infinite spinners; -webkit-mask-image: url('assets/fg.png'); -webkit-mask-size: 100%;"></div> -->
+    <!-- </div> -->
+    <!-- <div style="math-depth: 99; position: fixed; top: 0; left: 0; background: red; width: 100vw; height: 100vh; mix-blend-mode: multiply"></div> -->
+    
+
+    <!-- <div>
+        <h1>Pinball Purgatory Sign Generator!</h1>
+        <p>by zuccanium :3</p>
+    </div> -->
+
+    <div style="width: 100vw; display: flex; justify-content: center; position: absolute;">
+        <input autocomplete="off" type="text" placeholder="text" id="text" style="text-transform: uppercase; height: 4.75vw; width: 24.75vw; position: absolute; top: 27.5vw; background: none; border: none; outline: none; color: white; text-align: center; font-size: 3vw;">
+
+        <input autocomplete="off" type="text" placeholder="b9" id="number" style="text-transform: uppercase; height: 4.75vw; width: 9.75vw; position: absolute; top: 35vw; background: none; border: none; outline: none; color: white; text-align: center; font-size: 3vw;">
+    </div>
+
+    <div style="width: 100vw; position: absolute; height: 17.5vw; top: 75vw; display: flex; flex-direction: column;">
+        <h1 style="text-align: center;">Credits :3</h1>
+        <div style="width: 100%; display: flex; flex: 1;">
+            <div style="flex: 1; text-align: center; line-height: 50%;">
+                <h2 style="line-height: 100%;">Graphics</h2>
+                <p>Background - <b>Maildropfolder</b> and <b>nerferd_</b></p>
+                <p>Tilesets, Spinners, BG Lines, Bumper, Sign Assets - <b>Maya</b></p>
+            </div>
+            <div style="flex: 1; text-align: center; line-height: 50%;">
+                <h2 style="line-height: 100%;">Other</h2>
+                <p>Pumber Itself - <b>Maya</b> and <b>everybody else who worked on Pumber</b></p>
+            </div>
+        </div>
+    </div>
+
+    <div style="position: absolute; top: 0; left: 0; width: 100vw; height: inherit; mix-blend-mode: multiply; background: linear-gradient(-45deg, #FF5CF0,#82FFFF,#FF4A4A,#FF5CF0,#82FFFF,#FF4A4A,#FF5CF0); background-size: 4000px 4000px; animation: 5s linear infinite spinners; -webkit-mask-image: url('assets/fg.png'); -webkit-mask-size: 100%; pointer-events: none; mask-mode: alpha;">
+        <img src="assets/fg.png" alt="" width="100%" style="image-rendering: pixelated; visibility: hidden; pointer-events: none;">
+    </div>
+
+    <div style="width: 100vw; display: flex; justify-content: center; position: absolute; top: 0;">
+        <img src="assets/text1.png" alt="" style="width: 50vw; height: 5vw; position: absolute; top: 0vw;">
+        <img src="assets/text2.png" alt="" style="width: 50vw; height: 5vw; position: absolute; top: 5vw;">
+    </div>
+
+    <div style="height: 10vw; width: 100vw; display: flex; justify-content: center; position: absolute; top: 16vw;">
+        <canvas id="meow" height="32" width="80" style="image-rendering: pixelated;"></canvas>
+    </div>
+
+    <div style="width: 100vw; display: flex; justify-content: center; position: absolute;">
+        <button onclick="draw(); Animations.explode.play()" style="height: 10vw; width: 10vw; position: absolute; top: 40vw; background: none; border: none; outline: none; color: white; text-align: center; font-size: 3vw; cursor: pointer;">
+            <!-- <img src="assets/bumper/idle0.png" style="height: 200%; width: 200%; image-rendering: pixelated; transform: translate(-25%, -25%); pointer-events: none;"> -->
+        </button>
+        <canvas id="bumperCanvas" height="64" width="64" style="height: 20vw; width: 20vw; position: absolute; top: 35vw; image-rendering: pixelated; pointer-events: none;"></canvas>
+    </div>
+
+</body>
+</html>
+
+<style>
+
+img {
+    user-select: none;
+}
+
+h1 {
+    font-size: 50px;   
+}
+
+*::selection {
+    background-color: white;
+    color: black;
+}
+
+*::spelling-error {
+    text-decoration: wavy white;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: black;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(-45deg, #FF5CF0,#82FFFF,#FF4A4A);
+}
+
+@keyframes spinners {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 4000px 0px;
+    }
+}
+</style>
+
+<script>
+
+const canv = document.getElementById("meow");
+const ctx = canv.getContext("2d");
+
+const bumperCanv = document.getElementById("bumperCanvas");
+const bumperCtx = bumperCanv.getContext("2d");
+
+function ConstructImage(src) {
+    const img = new Image();
+
+    img.src = src;
+    if(src.startsWith("http")) img.crossOrigin = "anonymous"
+
+    return img;
+}
+
+function lerp(x, y, t) {
+    return (1 - t) * x + t * y;
+}
+
+function lerpColor(color1, color2, t) {
+    return `rgb(${lerp(color1[0], color2[0], t)}, ${lerp(color1[1], color2[1], t)}, ${lerp(color1[2], color2[2], t)})`
+}
+
+const colors = [
+    [200, 44,  42],  //red
+    [96,  188, 182], //blue
+    [210, 51,  167], //pink
+]
+
+let colorCombos = [
+    [0, 1],
+    [1, 2],
+    [2, 0],
+    
+    [1, 0],
+    [2, 1],
+    [0, 2]
+]
+
+
+let placeholder = ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129545799068557413/placeholder.png");
+
+placeholder.addEventListener("load", () => {
+    ctx.drawImage(placeholder, 0, 0);
+})
+
+//cors was being a bitch so i had to do this shit lmao
+
+const images = {
+    left: ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407794693541888/left.png"),
+    middle: ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407794999730236/middle.png"),
+    middleLight: ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1131308567790620742/middleLight.png"),
+    right: ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407795414962217/right.png"),
+    difference: ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1131307283285016606/difference.png"),
+    numbers: {
+        "b": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407833725747312/b.png"),
+        "0": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407828566745088/0.png"),
+        "1": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407828914884750/1.png"),
+        "2": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407829183312034/2.png"),
+        "3": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407829476909076/3.png"),
+        "4": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407829732773999/4.png"),
+        "5": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407830005395568/5.png"),
+        "6": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407830294798366/6.png"),
+        "7": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407830592606370/7.png"),
+        "8": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407830886199407/8.png"),
+        "9": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407828273147914/9.png"),
+    },
+    chars: {
+        "a": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407896568991835/a.png"),
+        "b": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407897126842451/b.png"),
+        "c": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407897441419404/c.png"),
+        "d": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407897701453824/d.png"),
+        "e": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407897982480384/e.png"),
+        "f": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407898238337126/f.png"),
+        "g": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407898481594508/g.png"),
+        "h": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407898720677950/h.png"),
+        "i": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407898989117450/i.png"),
+        "j": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407896208289873/j.png"),
+        "k": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407924519850078/k.png"),
+        "l": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407924888932432/l.png"),
+        "m": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407925274824744/m.png"),
+        "n": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407925643907162/n.png"),
+        "o": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407926164017253/o.png"),
+        "p": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407926520516618/p.png"),
+        "q": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407926830911528/q.png"),
+        "r": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407927179022508/r.png"),
+        "s": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407927552331866/s.png"),
+        "t": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407924092022904/t.png"),
+        "u": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407933516623942/u.png"),
+        "v": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407933810212955/v.png"),
+        "w": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407934137372743/w.png"),
+        "x": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407934410010785/x.png"),
+        "y": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407934649073805/y.png"),
+        "z": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129407934900736030/z.png"),
+
+        "0": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129492606041198773/0.png"),
+        "1": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129492606351585451/1.png"),
+        "2": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129492607165276321/2.png"),
+        "3": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129492603335880745/3.png"),
+        "4": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129492603700781167/4.png"),
+        "5": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129492603994378381/5.png"),
+        "6": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129492604397039696/6.png"),
+        "7": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129492604862603356/7.png"),
+        "8": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129492605244289135/8.png"),
+        "9": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129492605525303346/9.png"),
+
+
+        ")": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493212915052584/closebracket.png"),
+        "}": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493210801119242/closecurlybracket.png"),
+        "]": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493211044392960/closesquarebracket.png"),
+        "&": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493211275083806/ampersand.png"),
+        "*": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493211509956709/asterisk.png"),
+        "@": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493211765813359/at.png"),
+        "`": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129500787786137672/backquote.png"),
+        "\\": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493212642418749/backslash.png"), //fuck you (i hate when things like this are offset)
+        "<": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493808439099492/lessthan.png"),
+        ":": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493808707547246/colon.png"),
+        "-": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493809055682600/dash.png"),
+        "$": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493809315721226/dollar.png"),
+        '"': ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493809592553583/doublequote.png"),
+        "=": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493809919688734/equals.png"),
+        ">": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129493810246864906/greaterthan.png"),
+        "#": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129500171122790500/hashtag.png"),
+        "(": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129495399418319069/openbracket.png"),
+        "{": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129495399669973083/opencurlybracket.png"),
+        "[": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129495399913238598/opensquarebracket.png"),
+        "%": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129495400169099345/percent.png"),
+        "|": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129495400450113637/pipe.png"),
+        "+": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129495400680796323/plus.png"),
+        "^": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129495400966017136/power.png"),
+        "'": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129495399154069514/quote.png"),
+        "~": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129495671762858084/tilde.png"),
+        "_": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129495672027095121/underscore.png"),
+        ";": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129495672341672047/semicolon.png"),
+        "/": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129495672593338368/slash.png"),
+        "!": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129431696060727359/exclamation.png"),
+        ".": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129431697004445736/dot.png"),
+        ",": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129432324124184718/comma.png"),
+        "?": ConstructImage("https://cdn.discordapp.com/attachments/1129407358183940108/1129431696417230979/question.png"),
+    },
+    anim: {
+        bumperIdle: {
+            "0": ConstructImage("assets/bumper/idle/0.png")
+        },
+        bumperExplode: {
+            "0": ConstructImage("assets/bumper/explode/0.png"),
+            "1": ConstructImage("assets/bumper/explode/1.png"),
+            "2": ConstructImage("assets/bumper/explode/2.png"),
+            "3": ConstructImage("assets/bumper/explode/3.png"),
+            "4": ConstructImage("assets/bumper/explode/4.png"),
+            "5": ConstructImage("assets/bumper/explode/5.png"),
+            "6": ConstructImage("assets/bumper/explode/6.png"),
+            "7": ConstructImage("assets/bumper/explode/7.png"),
+            "8": ConstructImage("assets/bumper/explode/8.png"),
+            "9": ConstructImage("assets/bumper/explode/9.png"),
+            "10": ConstructImage("assets/bumper/explode/10.png"),
+            "11": ConstructImage("assets/bumper/explode/11.png"),
+        },
+    }
+}
+
+function draw() {
+    let number = document.getElementById("number").value;
+    let text = document.getElementById("text").value || "nuhuh";
+
+    canv.width = 10000; //this also clears the canvas
+ 
+    //left panel
+    ctx.drawImage(images.left, 0, 0);
+
+    //7 seg display
+    ctx.drawImage(images.numbers[number[0] || "0"], 7, 16);
+    ctx.drawImage(images.numbers[number[1] || "0"], 15, 16);
+
+    //padding before text
+    for(let i = 0; i < 5; i++) {
+        ctx.drawImage(images.middle, i + images.left.width, 0);
+    }
+
+    //pixels of padding
+    let xPos = 5;
+
+    let previousGradientIndex = -1;
+
+    //characters
+    for(let i = 0; i < text.length; i++) {
+        let char = text[i].toLowerCase();
+
+        //gradient index
+            let gradientIndex = Math.floor(Math.random() * 6);
+
+            if(previousGradientIndex == gradientIndex) gradientIndex = (gradientIndex + 1) % 5;
+
+            previousGradientIndex = gradientIndex;
+
+
+        let width = images.chars[char] ? images.chars[char].width : 10;
+        let height = images.chars[char] ? images.chars[char].height : 13;
+
+        //draw the background
+        for(let j = 0; j < width; j++) {
+            ctx.drawImage(images.middleLight, j + xPos + images.left.width, 0);
+        }
+
+
+        if(images.chars[char]) ctx.drawImage(images.chars[char], xPos + images.left.width, 9);
+
+        let image = ctx.getImageData(xPos + images.left.width, 9, width, height);
+
+        console.log(image)
+
+        for(let j = 0; j < image.data.length; j += 4) {
+            if(
+                image.data[j + 0] == 50  &&
+                image.data[j + 1] == 247 &&
+                image.data[j + 2] == 51
+            ) {
+                let relativeX = (j / 4) % image.width;
+                let relativeY = Math.floor((j / 4) / image.width);
+
+                let x = relativeX + xPos + images.left.width;
+                let y = relativeY + 9;
+
+                let combo = colorCombos[gradientIndex];
+
+                ctx.fillStyle = lerpColor(colors[combo[0]], colors[combo[1]], relativeY / image.height);
+                ctx.fillRect(x, y, 1, 1);
+            }
+
+            // if(
+            //     image.data[j + 0] == 201 &&
+            //     image.data[j + 1] == 213 &&
+            //     image.data[j + 2] == 198
+            // ) {
+            //     let relativeX = (j / 4) % image.width;
+            //     let relativeY = Math.floor((j / 4) / image.width);
+
+            //     let x = relativeX + xPos + images.left.width;
+            //     let y = relativeY + 9;
+
+            //     ctx.fillStyle = "rgb(255, 255, 255)";
+            //     ctx.fillRect(x, y, 1, 1);
+            // }
+        }
+
+        ctx.globalCompositeOperation = "difference";
+
+        //scanlines over text
+        for(let j = 0; j < width; j++) {
+            ctx.drawImage(images.difference, j + xPos + images.left.width, 0);
+        }
+
+        ctx.globalCompositeOperation = "source-over";
+
+        xPos += width;
+    }
+
+    //padding after text
+    for(let i = 0; i < 4; i++) {
+        ctx.drawImage(images.middle, xPos + i + images.left.width, 0);
+    }
+
+    //ending panel
+    ctx.drawImage(images.right, xPos + images.left.width + 4, 0);
+
+
+
+    //resize canvas
+        let newWidth = xPos + images.left.width + 4 + images.right.width - 14; //-14 because images.right is too big and i dont want to reupload it
+        
+        //rezising a canvas clears its data, so save the data here
+        let savedImage = ctx.getImageData(0, 0, newWidth, canv.height);
+
+        canv.width = newWidth;
+
+        ctx.putImageData(savedImage, 0, 0);
+}
+
+class Animation {
+    constructor(options) {
+        this.images = options.images;
+        this.play = options.play;
+        this.end = options.end || (() => { AnimationFrame = 0; });
+    }
+}
+
+var Animations = {
+    idle: new Animation({
+        images: images.anim.bumperIdle,
+        play: () => { AnimationFrame = 0; AnimationName = "idle"; },
+        end: () => { AnimationFrame = 0; }
+    }),
+    explode: new Animation({
+        images: images.anim.bumperExplode,
+        play: () => { AnimationFrame = 0; AnimationName = "explode"; },
+        end: () => { AnimationFrame = 0; AnimationName = "idle"; }
+    }),
+};
+
+console.log(Animations.idle)
+
+var AnimationFrame = 0;
+var AnimationName = "idle";
+
+function AnimationUpdate() {
+    // console.log({AnimationName, AnimationFrame});
+    
+    bumperCtx.clearRect(0, 0, bumperCanv.width, bumperCanv.height)
+    bumperCtx.drawImage(Animations[AnimationName].images[AnimationFrame], 0, 0);
+
+
+    AnimationFrame++;
+    
+    if(AnimationFrame > Object.keys(Animations[AnimationName].images).length - 1) {
+        Animations[AnimationName].end();
+    }
+}
+
+setInterval(AnimationUpdate, 1000/30);
+
+</script>
