@@ -292,10 +292,6 @@ function draw() {
     //left panel
     ctx.drawImage(images.left, 0, 0);
 
-    //7 seg display
-    ctx.drawImage(images.numbers[number[0] || "0"] || images.numbers[0], 7, 16);
-    ctx.drawImage(images.numbers[number[1] || "0"] || images.numbers[0], 15, 16);
-
     //padding before text
     for(let i = 0; i < 5; i++) {
         ctx.drawImage(images.middle, i + images.left.width, 0);
@@ -388,6 +384,12 @@ function draw() {
     ctx.drawImage(images.right, xPos + images.left.width + 4, 0);
 
 
+    //7 seg display
+    for(let i = 0; i < Math.max(number.length, 2); i++) {
+        ctx.drawImage(images.numbers[number[i] || "0"] || images.numbers[0], 7 + 8*i, 16);
+    }
+
+    // ctx.drawImage(images.numbers[number[1] || "0"] || images.numbers[0], 15, 16);
 
     //resize canvas
         let newWidth = xPos + images.left.width + 4 + images.right.width - 14; //-14 because images.right is too big and i dont want to reupload it
