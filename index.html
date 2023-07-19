@@ -293,8 +293,8 @@ function draw() {
     ctx.drawImage(images.left, 0, 0);
 
     //7 seg display
-    ctx.drawImage(images.numbers[number[0] || "0"], 7, 16);
-    ctx.drawImage(images.numbers[number[1] || "0"], 15, 16);
+    ctx.drawImage(images.numbers[number[0] || "0"] || images.numbers[0], 7, 16);
+    ctx.drawImage(images.numbers[number[1] || "0"] || images.numbers[0], 15, 16);
 
     //padding before text
     for(let i = 0; i < 5; i++) {
